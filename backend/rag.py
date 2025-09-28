@@ -54,44 +54,35 @@ class VECTORDB_SYSTEM:
         self.chroma_db.reset_collection()
 
     def add_docs(self, list_urls):
-        # Try Unstructured first (with UA + tolerant failures)
-        ua = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120 Safari/537.36"}
-        loader = UnstructuredURLLoader(
-            urls=list_urls,
-            continue_on_failure=True,
-            headers=ua,
-        )
-        docs = loader.load()
-    
-        # Filter out empty page_content
-        docs = [d for d in docs if getattr(d, "page_content", "").strip()]
-        if not docs:
-            logger.warning("Unstructured returned no content. Falling back to WebBaseLoader.")
-            # Minimal fallback using BeautifulSoup-based loader
-            wb = WebBaseLoader(web_paths=list_urls, header_template=ua, verify_ssl=True)
-            docs = wb.load()
-            docs = [d for d in docs if getattr(d, "page_content", "").strip()]
-    
-        if not docs:
-            logger.error("No content could be extracted from provided URLs.")
-            raise HTTPException(status_code=400, detail="No content could be extracted from the provided URLs")
-    
-        splitter = RecursiveCharacterTextSplitter(
-            separators=["\n\n", "\n", ".", " "],
-            chunk_size=CHUNK_SIZE,
-            chunk_overlap=CHUNK_OVERLAP
-        )
-        chunks = splitter.split_documents(docs)
-    
-        if not chunks:
-            logger.error("Document splitting returned 0 chunks.")
-            raise HTTPException(status_code=400, detail="Unable to split documents into chunks")
-    
-        logger.info(f"Documents split into {len(chunks)} chunks")
-        self.chroma_db.add_documents(
-            chunks, ids=[str(uuid4()) for _ in range(len(chunks))]
-        )
-        logger.info("Documents added to Chroma database") 
+    ua = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120 Safari/537.36"}
+    loader = WebBaseLoader(
+        web_paths=list_urls,
+        header_template=ua,
+        verify_ssl=True
+    )
+    docs = loader.load()
+    docs = [d for d in docs if getattr(d, "page_content", "").strip()]
+
+    if not docs:
+        logger.error("No content could be extracted from provided URLs.")
+        raise HTTPException(status_code=400, detail="No content could be extracted from the provided URLs")
+
+    splitter = RecursiveCharacterTextSplitter(
+        separators=["\n\n", "\n", ".", " "],
+        chunk_size=CHUNK_SIZE,
+        chunk_overlap=CHUNK_OVERLAP
+    )
+    chunks = splitter.split_documents(docs)
+
+    if not chunks:
+        logger.error("Document splitting returned 0 chunks.")
+        raise HTTPException(status_code=400, detail="Unable to split documents into chunks")
+
+    logger.info(f"Documents split into {len(chunks)} chunks")
+    self.chroma_db.add_documents(
+        chunks, ids=[str(uuid4()) for _ in range(len(chunks))]
+    )
+    logger.info("Documents added to Chroma database")
 
 
 #%% Function definition
