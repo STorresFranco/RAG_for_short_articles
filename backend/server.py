@@ -4,7 +4,6 @@ from backend import rag
 from pydantic import BaseModel
 from typing import List,Optional
 from contextlib import asynccontextmanager
-from backend import log_setup 
 from backend.log_setup import logger_setup
 
 logger2=logger_setup("logger_setup","server.log")
