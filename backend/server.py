@@ -35,7 +35,7 @@ class QueryPayload(BaseModel):
 #%%REST points
 @server.get("/")
 def health():
-    return {"status": "ok"}
+    return {"status": "ok", "message": "FastAPI running on Cloud Run"}
 
 #Doc adding
 @server.post("/filereading")
