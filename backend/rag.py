@@ -13,6 +13,7 @@ from langchain_core.output_parsers import JsonOutputParser
 from fastapi import HTTPException
 from backend.log_setup import logger_setup
 import os
+import pathlib
 
 #-------------- Logger
 logger = logger_setup("logger_setup", "server.log")
@@ -129,7 +130,8 @@ def populate_db(vectordb, list_urls):
 
 
 def qa_prediction(in_text: str, llm, vectordb):
-    with open("template.txt", "r", encoding="utf-8") as f:
+    temp_folder= Path(__file__).resolve().parent / "template.txt"
+    with open(temp_folder, "r", encoding="utf-8") as f:
         template = f.read()
 
     prompt_template = PromptTemplate(
