@@ -54,7 +54,10 @@ class VECTORDB_SYSTEM:
 
     def add_docs(self, list_urls):
         # ✅ switched to UnstructuredURLLoader
-        loader = UnstructuredURLLoader(urls=list_urls)  
+        loader = UnstructuredURLLoader(
+            urls=list_urls,
+            headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120 Safari/537.36"}
+        )  
         docs = loader.load()
         splitter = RecursiveCharacterTextSplitter(
             separators=["\n\n", "\n", ".", " "],
