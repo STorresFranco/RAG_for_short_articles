@@ -9,39 +9,78 @@ if repo_root not in sys.path:
 # Now imports should work
 from backend import rag
 
-# Initialize state (LLM + VectorDB)
-if "llm" not in st.session_state or "vectordb" not in st.session_state:
-    st.session_state.llm, st.session_state.vectordb = rag.initializer()
+import streamlit as st
+from PIL import Image
+from backend import rag  # import your RAG functions
 
-# ---------------- UI ----------------
-st.title("RAG System for Short Articles")
+# ---------------- Sidebar ---------------- #
+with st.sidebar:
+    st.header("Provide URLs")
+    url1 = st.text_input("URL 1")
+    url2 = st.text_input("URL 2")
+    url3 = st.text_input("URL 3")
 
-# Tab structure
-tab1, tab2 = st.tabs(["Populate DB", "Ask Questions"])
+    if st.button("Process URLs"):
+        urls = [url for url in [url1, url2, url3] if url.strip()]
+        if not urls:
+            st.error("⚠️ You must provide at least 1 valid URL.")
+        else:
+            if "llm" not in st.session_state or "vectordb" not in st.session_state:
+                # Initialize system once before populating
+                st.session_state.llm, st.session_state.vectordb = rag.initializer()
 
-# -------- Populate DB tab --------
+            with st.spinner("Processing URLs... Please wait."):
+                try:
+                    result = rag.populate_db(st.session_state.vectordb, urls)
+                    status_msg = result.get("Status", "No status returned")
+                    st.success(f"✅ Successfully processed the URLs | {status_msg}")
+                except Exception as e:
+                    st.error(f"❌ Failed to process URLs: {str(e)}")
+
+# ---------------- Main Page ---------------- #
+st.title("🔎 RAG Project Implementation")
+
+st.markdown("""
+### Hi!  
+In this project I've implemented a basic **RAG system**.  
+It takes information from up to three URLs you provide and resolves prompts about them! 🚀
+            
+#### Recomendations
+* Please, be patient with the url processing, this app is based on free tools so it might take a little.
+* I recommend using this app to analyze short articles or news, that way It will take less time processing the page content
+""")
+
+tab1, tab2 = st.tabs(["ℹ️ RAG Explanation", "💬 App"])
+
+# ----------- Tab 1: Explanation ----------- #
 with tab1:
-    st.header("Add URLs to Vector Database")
-    urls_input = st.text_area("Enter URLs (one per line)")
-    if st.button("Populate Database"):
-        urls = [u.strip() for u in urls_input.splitlines() if u.strip()]
-        if urls:
-            result = rag.populate_db(st.session_state.vectordb, urls)
-            st.success(result["Status"])
-        else:
-            st.warning("Please enter at least one valid URL.")
+    st.subheader("If you haven't heard of RAG:")
+    st.markdown("""
+RAG (**Retrieval Augmented Generation**) is like **an AI with specific knowledge**.  
+While ChatGPT, Gemini, and others use general information, with RAG you define the sources,  
+and the AI resolves your prompts using *only those sources*.
+""")
+    im = Image.open("RAGvs.png")
+    st.image(im, caption="RAG vs General Purpose AI", use_container_width=True)
 
-# -------- Ask Questions tab --------
+# ----------- Tab 2: App ----------- #
 with tab2:
-    st.header("Ask your question")
-    query = st.text_input("Enter your query")
-    if st.button("Get Answer"):
-        if query.strip():
-            try:
-                answer = rag.qa_prediction(query, st.session_state.llm, st.session_state.vectordb)
-                st.write("### Answer")
-                st.json(answer)
-            except Exception as e:
-                st.error(f"Error: {e}")
+    st.subheader("Ask a Question")
+    in_text = st.text_input("Insert your prompt")
+
+    if st.button("Query"):
+        if not in_text.strip():
+            st.error("⚠️ You must provide a query.")
         else:
-            st.warning("Please enter a question.")
+            if "llm" not in st.session_state or "vectordb" not in st.session_state:
+                st.error("⚠️ You must process URLs first in the sidebar.")
+            else:
+                with st.spinner("Prompting the query... Please wait."):
+                    try:
+                        answer = rag.qa_prediction(
+                            in_text, st.session_state.llm, st.session_state.vectordb
+                        )
+                        st.success("✅ Query successfully processed")
+                        st.markdown(f"### 📝 Answer:\n{answer}")
+                    except Exception as e:
+                        st.error(f"❌ Error resolving the query: {str(e)}")
