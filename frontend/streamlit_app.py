@@ -1,3 +1,4 @@
+import streamlit as st
 import sys, os
 
 # Get absolute path to the repo root
