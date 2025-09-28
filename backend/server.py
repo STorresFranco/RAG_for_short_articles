@@ -1,6 +1,6 @@
 #%% Library importation
 from fastapi import FastAPI
-import rag
+from . import rag
 from pydantic import BaseModel
 from typing import List,Optional
 from contextlib import asynccontextmanager
