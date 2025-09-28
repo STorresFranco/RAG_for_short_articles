@@ -32,7 +32,7 @@ from uuid import uuid4
 CHUNK_SIZE=500
 CHUNK_OVERLAP=20
 LLM_MODEL="llama-3.3-70b-versatile"
-EMBEDDING_NAME="Qwen/Qwen3-Embedding-0.6B"
+EMBEDDING_NAME="sentence-transformers/all-MiniLM-L6-v2"
 COLLECTION_NAME="my_first_RAG"
 PATH="./vector_store"
 
