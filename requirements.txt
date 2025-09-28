@@ -1,6 +1,5 @@
 fastapi==0.117.1
 uvicorn==0.36.0
-uuid==1.30
 langchain==0.3.27
 langchain-chroma==0.2.6
 langchain-community==0.3.29
@@ -14,9 +13,7 @@ requests-oauthlib==2.0.0
 requests-toolbelt==1.0.0
 python-dotenv==1.1.1
 pillow==11.3.0
-logger==1.4
 streamlit==1.50.0
 tokenizers==0.19.1
-sentence-transformers==3.3.1
-torch==2.3.1
 transformers==4.44.2
+sentence-transformers==3.3.1
