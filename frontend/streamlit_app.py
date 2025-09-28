@@ -1,5 +1,7 @@
 import streamlit as st
 from backend import rag  # directly import your RAG functions
+import sys, os
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 # Initialize state (LLM + VectorDB)
 if "llm" not in st.session_state or "vectordb" not in st.session_state:
