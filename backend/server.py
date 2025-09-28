@@ -33,6 +33,10 @@ class QueryPayload(BaseModel):
     in_text:str
 
 #%%REST points
+@server.get("/")
+def health():
+    return {"status": "ok"}
+
 #Doc adding
 @server.post("/filereading")
 def doc_population(payload:UrlPayload):
