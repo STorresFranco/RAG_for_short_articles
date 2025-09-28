@@ -36,7 +36,7 @@ COLLECTION_NAME="my_first_RAG"
 PATH="./vector_store"
 
 #Loading environment variables
-load_dotenv()
+load_dotenv(override=False)
 
 
 #%% VECTOR DATABASE Class DEFINITION: Works as an instance containing a chroma object from langchain
