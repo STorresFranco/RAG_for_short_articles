@@ -67,6 +67,10 @@ class VECTORDB_SYSTEM:
         logger.error("No content could be extracted from provided URLs.")
         raise HTTPException(status_code=400, detail="No content could be extracted from the provided URLs")
 
+    # 🔍 Debug: show preview of first doc
+    preview = docs[0].page_content[:500] if docs else "EMPTY"
+    logger.info(f"First doc preview: {preview}")
+
     splitter = RecursiveCharacterTextSplitter(
         separators=["\n\n", "\n", ".", " "],
         chunk_size=CHUNK_SIZE,
