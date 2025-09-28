@@ -12,6 +12,7 @@ from langchain.chains import create_retrieval_chain
 from langchain_core.output_parsers import JsonOutputParser
 from fastapi import HTTPException
 from backend.log_setup import logger_setup
+import os
 
 #-------------- Logger
 logger=logger_setup("logger_setup","server.log")
@@ -74,8 +75,18 @@ def initializer():
         Function used to initialize and llm and a vector database with a collection based on user interaction with frontend
         The function will be called based on frontend "Begin" button
     '''
+
+    #Loading GROQ key
+    groq_key_api= os.getenv("GROQ_API_KEY")
+
+    if not groq_key_api:
+        raise RuntimeError("GROQ Key is not set in the environment")
+
     #Creating the llm model from Groq
-    llm=ChatGroq(model=LLM_MODEL,temperature=0.8,max_tokens=500)
+    llm=ChatGroq(model=LLM_MODEL,
+                 temperature=0.8,
+                 max_tokens=500,
+                 api_key=groq_key_api)
 
     #Calling the embedding function from huggingface
     emb_fun=HuggingFaceEmbeddings(
