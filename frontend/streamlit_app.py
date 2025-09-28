@@ -61,7 +61,8 @@ While ChatGPT, Gemini, and others use general information, with RAG you define t
 and the AI resolves your prompts using *only those sources*.
 """)
     image_path = os.path.join(os.path.dirname(__file__), "RAGvs.png")
-    st.image(image_path, caption="RAG vs General Purpose AI", use_container_width=True)
+    im = Image.open(image_path)
+    st.image(im, caption="RAG vs General Purpose AI", use_container_width=True)
 
 # ----------- Tab 2: App ----------- #
 with tab2:
