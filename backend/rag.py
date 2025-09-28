@@ -11,7 +11,7 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains import create_retrieval_chain
 from langchain_core.output_parsers import JsonOutputParser
 from fastapi import HTTPException
-from log_setup import logger_setup
+from backend.log_setup import logger_setup
 
 #-------------- Logger
 logger=logger_setup("logger_setup","server.log")
