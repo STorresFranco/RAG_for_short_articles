@@ -2,7 +2,7 @@ import streamlit as st
 from PIL import Image
 import requests
 
-API_URL = "http://localhost:8000"
+API_URL = st.secrets["API_URL"]
 
 # ---------------- Sidebar ---------------- #
 with st.sidebar:
