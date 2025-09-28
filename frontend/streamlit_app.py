@@ -1,10 +1,12 @@
-import streamlit as st
-from backend import rag  # directly import your RAG functions
 import sys, os
+
 # Get absolute path to the repo root
 repo_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 if repo_root not in sys.path:
     sys.path.insert(0, repo_root)
+
+# Now imports should work
+from backend import rag
 
 # Initialize state (LLM + VectorDB)
 if "llm" not in st.session_state or "vectordb" not in st.session_state:
