@@ -55,7 +55,7 @@ RAG (**Retrieval Augmented Generation**) is like **an AI with specific knowledge
 While ChatGPT, Gemini, and others use general information, with RAG you define the sources,  
 and the AI resolves your prompts using *only those sources*.
 """)
-    im = Image.open(CURRENT_DIR / "RAGvs.png")
+    im = Image.open(CURRENT_DIR / "Ragvs.png")
     st.image(im, caption="RAG vs General Purpose AI", width="stretch")
 
 # ----------- Tab 2: App ----------- #
@@ -83,4 +83,5 @@ with tab2:
             
 
                 
+
 
