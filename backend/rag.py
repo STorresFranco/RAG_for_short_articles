@@ -10,7 +10,6 @@ from langchain.prompts import PromptTemplate
 from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.chains import create_retrieval_chain
 from langchain_core.output_parsers import JsonOutputParser
-from fastapi import HTTPException
 from backend.log_setup import logger_setup
 
 #-------------- Other
@@ -146,6 +145,7 @@ def qa_prediction(in_text:str,llm,vectordb):
     answer=parser.parse(result["answer"])
 
     return answer
+
 
 
 
