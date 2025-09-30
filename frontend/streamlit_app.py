@@ -54,7 +54,7 @@ RAG (**Retrieval Augmented Generation**) is like **an AI with specific knowledge
 While ChatGPT, Gemini, and others use general information, with RAG you define the sources,  
 and the AI resolves your prompts using *only those sources*.
 """)
-    im = Image.open("frontend/RAGvs.png")
+    im = Image.open("frontend/Ragvs.png")
     st.image(im, caption="RAG vs General Purpose AI", width="stretch")
 
 # ----------- Tab 2: App ----------- #
@@ -80,4 +80,5 @@ with tab2:
                 st.markdown(f"### 📝 Answer:\n{answer}")
                 st.markdown(f"### 📚 Source(s):\n{source}")
             
+
                 
