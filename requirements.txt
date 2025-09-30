@@ -12,7 +12,6 @@ transformers==4.44.2
 tokenizers==0.19.1
 huggingface-hub==0.23.5
 unstructured==0.16.23
-lxml==4.9.3
 html5lib==1.1
 beautifulsoup4==4.12.3
 pillow==11.0.0
