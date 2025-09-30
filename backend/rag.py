@@ -13,16 +13,16 @@ from langchain_core.output_parsers import JsonOutputParser
 from fastapi import HTTPException
 from backend.log_setup import logger_setup
 
-#-------------- Logger
-logger=logger_setup("logger_setup","server.log")
-#-------------- Env libraries
-import dotenv
-from dotenv import load_dotenv
-from pathlib import Path
-
 #-------------- Other
 from datetime import datetime
 from uuid import uuid4  
+
+#-------------- Logger
+logger=logger_setup("logger_setup","server.log")
+
+#-------------- Path libraries
+from pathlib import Path
+
 
 
 #%% Global variables and env variables loading
@@ -76,7 +76,10 @@ def initializer():
         The function will be called based on frontend "Begin" button
     '''
     #Creating the llm model from Groq
-    llm=ChatGroq(model=LLM_MODEL,temperature=0.8,max_tokens=500)
+    llm=ChatGroq(model=LLM_MODEL,
+                 temperature=0.8,
+                 max_tokens=500,
+                )
 
     #Calling the embedding function from huggingface
     emb_fun=HuggingFaceEmbeddings(
@@ -95,7 +98,7 @@ def populate_db(vectordb,list_urls):
         Function to populate the vector database with chunks based on the URLs provided by the user in the frontend
     Inputs
         vectordb (RAG_SYSTEM instance): instance of RAG_SYSTEM class
-        list_urls: list of urls taken from frontend
+        list_urls (list): list of urls taken from frontend
     '''
     #adding the documents from the url list to the database
     logger.info(f"{list_urls}")
@@ -143,6 +146,7 @@ def qa_prediction(in_text:str,llm,vectordb):
     answer=parser.parse(result["answer"])
 
     return answer
+
 
 
 
