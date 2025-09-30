@@ -18,3 +18,5 @@ pillow==11.3.0
 tqdm==4.67.1
 numpy==1.26.4
 rich==14.1.0
+langsmith==0.4.29
+
