@@ -34,9 +34,6 @@ EMBEDDING_NAME="Qwen/Qwen3-Embedding-0.6B"
 COLLECTION_NAME="my_first_RAG"
 PATH="backend/vector_store"
 
-#Loading environment variables
-load_dotenv()
-
 
 #%% VECTOR DATABASE Class DEFINITION: Works as an instance containing a chroma object from langchain
 class VECTORDB_SYSTEM:
@@ -145,6 +142,7 @@ def qa_prediction(in_text:str,llm,vectordb):
     answer=parser.parse(result["answer"])
 
     return answer
+
 
 
 
