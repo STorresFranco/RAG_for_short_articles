@@ -3,6 +3,7 @@ from PIL import Image
 import requests
 import sys
 import os
+from pathlib import Path
 
 sys.path.append(os.path.abspath("."))
 CURRENT_DIR = Path(__file__).resolve().parent
@@ -83,5 +84,6 @@ with tab2:
             
 
                 
+
 
 
