@@ -1,4 +1,3 @@
-# RAG_for_short_articles
 # Retrieval-Augmented Generation (RAG) for Short Articles
 
 A lightweight **Retrieval-Augmented Generation (RAG)** application built with Python, LangChain, ChromaDB, Groq, and Streamlit.
