@@ -2,6 +2,8 @@
 
 # 🔎 RAG for Short Articles
 
+https://ragforshortarticles-ui2cz7jjwfmxvd4t5chxbh.streamlit.app/
+
 ### Ask questions about articles, backed by the information you provide.
 
 A lightweight **Retrieval-Augmented Generation (RAG)** application that turns article URLs into a searchable knowledge base and uses an LLM to generate context-aware answers with source references.
@@ -13,6 +15,8 @@ A lightweight **Retrieval-Augmented Generation (RAG)** application that turns ar
 ![Groq](https://img.shields.io/badge/Groq-LLM%20Inference-F55036?style=flat-square)
 
 **[How it works](#-how-it-works)** · **[Tech stack](#-tech-stack)** · **[Run locally](#-run-locally)** · **[Limitations](#-limitations)**
+
+Note: If the app is down, let me know, and I will wake it up
 
 </div>
 
