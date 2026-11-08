@@ -8,12 +8,6 @@ https://ragforshortarticles-ui2cz7jjwfmxvd4t5chxbh.streamlit.app/
 
 A lightweight **Retrieval-Augmented Generation (RAG)** application that turns article URLs into a searchable knowledge base and uses an LLM to generate context-aware answers with source references.
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)
-![LangChain](https://img.shields.io/badge/LangChain-1C3C3C?style=flat-square&logo=langchain&logoColor=white)
-![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector%20Store-6C47FF?style=flat-square)
-![Groq](https://img.shields.io/badge/Groq-LLM%20Inference-F55036?style=flat-square)
-
 **[How it works](#-how-it-works)** · **[Tech stack](#-tech-stack)** · **[Run locally](#-run-locally)** · **[Limitations](#-limitations)**
 
 Note: If the app is down, let me know, and I will wake it up
