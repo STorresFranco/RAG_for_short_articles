@@ -44,6 +44,7 @@ It takes information from up to three URLs you provide and resolves prompts abou
 #### Recomendations
 * Please, be patient with the url processing, this app is based on free tools so it might take a little.
 * I recommend using this app to analyze short articles or news, that way It will take less time processing the page content
+* I recommend trying some short articles from these page https://www.bbc.co.uk/mediaaction/publications-and-resources/research-short
 """)
 
 tab1, tab2 = st.tabs(["ℹ️ RAG Explanation", "💬 App"])
