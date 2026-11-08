@@ -29,7 +29,7 @@ from pathlib import Path
 #RAG parameters
 CHUNK_SIZE=500
 CHUNK_OVERLAP=20
-LLM_MODEL="llama-3.3-70b-versatile"
+LLM_MODEL="openai/gpt-oss-120b"
 EMBEDDING_NAME="Qwen/Qwen3-Embedding-0.6B"
 COLLECTION_NAME="my_first_RAG"
 PATH="backend/vector_store"
