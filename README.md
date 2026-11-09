@@ -29,6 +29,7 @@ Provide **up to three article URLs**, process the content, and ask natural-langu
 
 Acess the live app via this link:
 https://ragforshortarticles-ui2cz7jjwfmxvd4t5chxbh.streamlit.app/
+
 Note: If the project is down, let me know, and I will wake it up as Soon as possible. This happens because the frontend is hosted in streamlit cloud.
 
 ## 🧩 How it works
