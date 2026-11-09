@@ -2,8 +2,6 @@
 
 # 🔎 RAG for Short Articles
 
-https://ragforshortarticles-ui2cz7jjwfmxvd4t5chxbh.streamlit.app/
-
 ### Ask questions about articles, backed by the information you provide.
 
 A lightweight **Retrieval-Augmented Generation (RAG)** application that turns article URLs into a searchable knowledge base and uses an LLM to generate context-aware answers with source references.
@@ -27,6 +25,11 @@ Provide **up to three article URLs**, process the content, and ask natural-langu
 - 🔍 Search relevant passages using vector similarity.
 - 💬 Ask questions in natural language.
 - 📚 Receive answers with source references.
+
+
+Acess the live app via this link:
+https://ragforshortarticles-ui2cz7jjwfmxvd4t5chxbh.streamlit.app/
+Note: If the project is down, let me know, and I will wake it up as Soon as possible. This happens because the frontend is hosted in streamlit cloud.
 
 ## 🧩 How it works
 
